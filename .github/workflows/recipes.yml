@@ -17,7 +17,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # No npm build needed since it's plain HTML
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
