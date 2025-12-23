@@ -4,4 +4,6 @@
 
 ---
 
-[Go to Live Preview](https://jove0610.github.io/odin-project-course/recipes)
+<a href="https://jove0610.github.io/odin-project-course/recipes" target="_blank">
+    Go to Live Preview
+</a>

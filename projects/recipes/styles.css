@@ -1,0 +1,64 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: Garamond, Arial, "Times New Roman";
+}
+
+body {
+    background-color:#101828;
+    color: #d1d5db;
+    margin: 0;
+}
+
+a {
+    color: #8ec5ff;
+}
+
+li {
+    margin: 8px 0;
+}
+
+ul,
+ol {
+    margin: 0
+}
+
+#main-header {
+    background-color: #1e2939;
+    padding: 20px;
+    margin: 0;
+}
+
+.content {
+    background-color: #1e2939;
+    width: 520px;
+    margin: 50px auto;
+    padding: 28px;
+}
+
+.content-header {
+    margin: 0 0 24px 0;
+}
+
+.content-image {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.dish-image {
+    width: 420px;
+}
+
+.dish-attribution {
+    margin: 0;
+    font-size: 14px;
+}
+
+.content-body {
+    margin: 38px 0;
+}
+
+.content-body-heading {
+    margin: 32px 0 0 0;
+}
