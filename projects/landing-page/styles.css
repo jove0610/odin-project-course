@@ -8,6 +8,8 @@
 
 body {
     font-family: Roboto, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 a {
@@ -15,7 +17,8 @@ a {
 }
 
 .header,
-.banner {
+.banner,
+.contact-us {
     width: 900px;
 }
 
@@ -185,10 +188,49 @@ a {
  * ======================
 */
 
+.contact-us {
+    background-color: #3882F6;
+    margin: 64px 0;
+    align-self: center;
+    padding: 32px 64px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+}
 
+.contact-us-text h5 {
+    font-size: 20px;
+    color: #F9FAF8;
+}
+
+.contact-us-text p {
+    color: #E5E7EB;
+}
+
+.contact-us-btn {
+    background-color: #3882F6;
+    border: 2px solid #F9FAF8;
+    color: #F9FAF8;
+    padding: 8px 24px;
+    border-radius: 10px;
+    align-self: flex-end;
+}
+
+.contact-us-btn:hover {
+    cursor: pointer;
+    background-color: #2f69c6;
+}
 
 /* 
  * ======================
  * Footer Section
  * ======================
 */
+
+.copyright-text {
+    background-color: #1F2937;
+    font-size: 18px;
+    color: #E5E7EB;
+    padding: 24px 0;
+    text-align: center;
+}
