@@ -101,7 +101,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: grey;
+    background-color: #808080;
 }
 
 /* 
@@ -110,8 +110,41 @@ a {
  * ======================
 */
 
+.about {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.about-heading {
+    font-size: 36px;
+    color: #1F2937;
+    font-weight: 900;
+    margin: 36px 0;
+}
 
+.about-content {
+    margin-bottom: 64px;
+    display: flex;
+    gap: 30px;
+}
+
+.about-item {
+    flex-basis: 150px;
+}
+
+.about-item-box {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 5px solid #3882F6;
+    border-radius: 15px;
+}
+
+.about-item-text {
+    text-align: center;
+    color: #5e5e5e;
+}
 
 /* 
  * ======================
@@ -119,6 +152,9 @@ a {
  * ======================
 */
 
+.testimonial {
+    background-color: #E5E7EB;
+}
 
 
 /* 
