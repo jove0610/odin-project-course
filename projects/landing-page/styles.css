@@ -154,6 +154,28 @@ a {
 
 .testimonial {
     background-color: #E5E7EB;
+    padding: 64px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.testimonial-quote,
+.testimonial-author {
+    width: 640px;
+}
+
+.testimonial-quote {
+    font-size: 36px;
+    color: #1F2937;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.testimonial-author {
+    text-align: end;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 
