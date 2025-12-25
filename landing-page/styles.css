@@ -1,0 +1,241 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+
+}
+
+body {
+    font-family: Roboto, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header,
+.banner,
+.contact-us {
+    width: 900px;
+}
+
+/* 
+ * ======================
+ * Hero Section
+ * ======================
+*/
+
+.hero {
+    height: 100vh;
+    background-color: #1F2937;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+}
+
+.header-logo-text {
+    font-size: 24px;
+    color: #F9FAF8;
+    margin-right: auto;
+    align-self: center;
+}
+
+.header-link {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.header-link:hover {
+    background-color: #2d3f58;
+}
+
+.header-link,
+.hero-secondary-text {
+    font-size: 18px;
+    color: #E5E7EB;
+}
+
+.banner {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.hero-main-text {
+    font-size: 48px;
+    font-weight: 900;
+    color: #F9FAF8
+}
+
+.hero-button {
+    background-color: #3882F6;
+    font-size: 24px;
+    color: #F9FAF8;
+    padding: 8px 32px;
+    border-radius: 15px;
+    border: none;
+}
+
+.hero-button:hover {
+    cursor: pointer;
+    background-color: #2454a2;
+}
+
+.banner-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.banner-image {
+    flex-shrink: 0;
+    width: 400px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #808080;
+}
+
+/* 
+ * ======================
+ * About Section
+ * ======================
+*/
+
+.about {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-heading {
+    font-size: 36px;
+    color: #1F2937;
+    font-weight: 900;
+    margin: 36px 0;
+}
+
+.about-content {
+    margin-bottom: 64px;
+    display: flex;
+    gap: 30px;
+}
+
+.about-item {
+    flex-basis: 150px;
+}
+
+.about-item-box {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 5px solid #3882F6;
+    border-radius: 15px;
+}
+
+.about-item-text {
+    text-align: center;
+    color: #5e5e5e;
+}
+
+/* 
+ * ======================
+ * Testimonial Section
+ * ======================
+*/
+
+.testimonial {
+    background-color: #E5E7EB;
+    padding: 64px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.testimonial-quote,
+.testimonial-author {
+    width: 640px;
+}
+
+.testimonial-quote {
+    font-size: 36px;
+    color: #1F2937;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.testimonial-author {
+    text-align: end;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+/* 
+ * ======================
+ * Contact Us Section
+ * ======================
+*/
+
+.contact-us {
+    background-color: #3882F6;
+    margin: 64px 0;
+    align-self: center;
+    padding: 32px 64px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-us-text h5 {
+    font-size: 20px;
+    color: #F9FAF8;
+}
+
+.contact-us-text p {
+    color: #E5E7EB;
+}
+
+.contact-us-btn {
+    background-color: #3882F6;
+    border: 2px solid #F9FAF8;
+    color: #F9FAF8;
+    padding: 8px 24px;
+    border-radius: 10px;
+    align-self: flex-end;
+}
+
+.contact-us-btn:hover {
+    cursor: pointer;
+    background-color: #2f69c6;
+}
+
+/* 
+ * ======================
+ * Footer Section
+ * ======================
+*/
+
+.copyright-text {
+    background-color: #1F2937;
+    font-size: 18px;
+    color: #E5E7EB;
+    padding: 24px 0;
+    text-align: center;
+}
