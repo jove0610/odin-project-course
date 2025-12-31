@@ -34,11 +34,15 @@ gridContainer.addEventListener('mouseover', e => {
 })
 
 changeSizeBtn.addEventListener('click', () => {
-    const newSize = +prompt('Enter new size (max: 100)', DEFAULT_SIZE)
-    if (Number.isInteger(newSize)) {
+    let newSize = prompt('Enter new size between 2 and 100', DEFAULT_SIZE)
+    if (newSize === null) {
+        return
+    }
+    newSize = +newSize
+    if (Number.isInteger(newSize) && newSize >= 2) {
         gridContainer.textContent = ''
         renderGrid(Math.min(100, newSize))
     } else {
-        alert('Error: Not an integer!')
+        alert('Error: Invalid input!')
     }
 })
