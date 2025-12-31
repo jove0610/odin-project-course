@@ -1,0 +1,18 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif, "Times New Roman";
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color:#101828;
+    color: #d1d5db;
+}
+
+#main-header {
+    background-color: #1e2939;
+    padding: 20px;
+}
