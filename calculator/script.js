@@ -68,10 +68,8 @@ function appendDigit(operand, digit) {
         return '0'
     } else if (isDecimal && operand.includes('.')) {
         return operand
-    }
-
-    if (operand === '') {
-        operand = '0'
+    } else if (isDecimal && operand === '') {
+        return '0.'
     } 
     return operand += digit
 }
@@ -83,7 +81,7 @@ function handleClickDigit(element) {
         operand1 = appendDigit(operand1, digit)
         displayNumber(operand1)
     } else if (operator === EQUALS_OPERATOR) {
-        operand1 = digit
+        operand1 = digit === '.' ? '0.' : digit
         displayEl.textContent = operand1
         highlightOperator()
     } else if (ARITMETIC_OPERATIONS.includes(operator)) {
@@ -93,7 +91,12 @@ function handleClickDigit(element) {
 }
 
 function handleClickOperator(element) {
-    if (operator === DIVISION_OPERATOR && operand2 === '0') {
+    if (element.textContent === EQUALS_OPERATOR && operand2 === '') {
+        return
+    } else if (operator === DIVISION_OPERATOR &&
+        operand2 !== '' &&
+        Number(operand2) === 0
+    ) {
         display = MATH_ERROR
         displayEl.textContent = display
     } else if (operand2 !== '') {
