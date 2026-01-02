@@ -12,6 +12,7 @@ const ARITHMETIC_OPERATOR = [
 ]
 
 const allClearEl = document.querySelector('.allclear')
+const decimalEl = document.querySelector('.decimal')
 const displayEl = document.querySelector('.display')
 const equalsEl = document.querySelector('.equals')
 const digitEls = document.querySelectorAll('.digit')
@@ -46,10 +47,19 @@ function operate(operator, num1, num2) {
 }
 
 function populateDisplay(number) {
-    display = number
-    displayEl.textContent = display === MATH_ERROR
-        ? MATH_ERROR
-        : Number(display).toLocaleString()
+    if (number === MATH_ERROR) {
+        display = number
+        displayEl.textContent = display
+        return
+    }
+
+    let [integer, decimal] = number.split('.')
+    integer = Number(integer).toLocaleString()
+
+    display = number.includes('.')
+        ? `${integer}.${decimal}`
+        : number
+    displayEl.textContent = display
 }
 
 function allClear() {
@@ -127,6 +137,24 @@ equalsEl.addEventListener('click', (e) => {
     operand2 = null
     operator = EQUALS_OPERATOR
     populateDisplay(operand1)
+})
+
+decimalEl.addEventListener('click', (e) => {
+    if (operator === null && !operand1.includes('.')) {
+        operand1 += '.'
+        populateDisplay(operand1)
+    } else if (ARITHMETIC_OPERATOR.includes(operator) &&
+        (operand2 === null || !operand2.includes('.'))
+    ) {
+        operand2 = operand2 === null
+            ? '0.'
+            : operand2 + '.'
+        populateDisplay(operand2)
+    } else if (operator === EQUALS_OPERATOR) {
+        allClear()
+        operand1 = '0.'
+        populateDisplay(operand1)
+    }
 })
 
 allClearEl.addEventListener('click', allClear)
