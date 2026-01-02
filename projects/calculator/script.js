@@ -2,6 +2,8 @@ const ADDITION_OPERATOR = '+'
 const SUBTRACTION_OPERATOR = '-'
 const MULTIPLICATION_OPERATOR = 'x'
 const DIVISION_OPERATOR = '/'
+const EQUALS_OPERATOR = '='
+const MATH_ERROR = 'Math error...'
 const ARITHMETIC_OPERATOR = [
     ADDITION_OPERATOR,
     SUBTRACTION_OPERATOR,
@@ -9,7 +11,9 @@ const ARITHMETIC_OPERATOR = [
     DIVISION_OPERATOR,
 ]
 
+const allClearEl = document.querySelector('.allclear')
 const displayEl = document.querySelector('.display')
+const equalsEl = document.querySelector('.equals')
 const digitEls = document.querySelectorAll('.digit')
 const operatorEls = document.querySelectorAll('.operator')
 
@@ -18,54 +22,64 @@ let operand2 = null
 let operator = null
 let display = operand1 // initial display is operand1
 
-function add(num1, num2) {
-    return Number(num1) + Number(num2)
-}
-
-function subtract(num1, num2) {
-    return num1 - num2
-}
-
-function multiply(num1, num2) {
-    return num1 * num2
-}
-
-function divide(num1, num2) {
-    return num1 / num2
-}
-
 function operate(operator, num1, num2) {
     let answer
     switch(operator) {
         case ADDITION_OPERATOR:
-            answer = add(num1, num2)
+            answer = Number(num1) + Number(num2)
             break
         case SUBTRACTION_OPERATOR:
-            answer = subtract(num1, num2)
+            answer = num1 - num2
             break
         case MULTIPLICATION_OPERATOR:
-            answer = multiply(num1, num2)
+            answer = num1 * num2
             break
         case DIVISION_OPERATOR:
-            answer = divide(num1, num2)
-            break
-        default:
+            if (Number(num2) === 0) {
+                return MATH_ERROR
+            }
+            answer = num1 / num2
             break
     }
-    return answer
+
+    return `${Math.round(answer * 100) / 100}`
 }
 
 function populateDisplay(number) {
     display = number
-    displayEl.textContent = Number(display).toLocaleString()
+    displayEl.textContent = display === MATH_ERROR
+        ? MATH_ERROR
+        : Number(display).toLocaleString()
+}
+
+function allClear() {
+    operand1 = '0'
+    operand2 = null
+    operator = null
+    populateDisplay(operand1)
+    document.querySelector('.highlight')?.classList.remove('highlight')
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    displayEl.textContent = operand1
+    populateDisplay(operand1)
 })
 
 digitEls.forEach(el => el.addEventListener('click', (e) => {
+    if (display === MATH_ERROR) {
+        return
+    }
+
     const digit = e.target.textContent
+
+    // after calculating with "equals" operator
+    // if next button clicked is a digit
+    // clear the result and start a new calculation
+    if (operand1 &&
+        operator === EQUALS_OPERATOR &&
+        operand2 === null
+    ) {
+        allClear()
+    }
     
     if (operator === null) {
         operand1 = operand1 === '0'
@@ -81,7 +95,38 @@ digitEls.forEach(el => el.addEventListener('click', (e) => {
 }))
 
 operatorEls.forEach(el => el.addEventListener('click', (e) => {
+    if (display === MATH_ERROR) {
+        return
+    }
+
+    if (ARITHMETIC_OPERATOR.includes(operator) &&
+        operand2 !== null
+    ) {
+        operand1 = operate(operator, operand1, operand2)
+        operand2 = null
+        populateDisplay(operand1)  
+    }
+
     operator = e.target.textContent
     document.querySelector('.highlight')?.classList.remove('highlight')
     e.target.classList.add('highlight')
 }))
+
+equalsEl.addEventListener('click', (e) => {
+    if (display === MATH_ERROR ||
+        operator === null ||
+        operand2 === null
+    ) {
+        return
+    }
+
+    document.querySelector('.highlight')?.classList.remove('highlight')
+    e.target.classList.add('highlight')
+
+    operand1 = operate(operator, operand1, operand2)
+    operand2 = null
+    operator = EQUALS_OPERATOR
+    populateDisplay(operand1)
+})
+
+allClearEl.addEventListener('click', allClear)
