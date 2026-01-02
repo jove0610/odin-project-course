@@ -54,13 +54,13 @@ body {
     font-weight: 700;
 }
 
-.button:hover {
-    cursor: pointer;
-}
-
-.empty-box {
+.empty-button {
     width: 58px;
     height: 58px;
+}
+
+.button:hover {
+    cursor: pointer;
 }
 
 .button:active {
