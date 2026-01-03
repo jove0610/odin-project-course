@@ -63,7 +63,7 @@ function populateDisplay(number) {
     displayEl.textContent = display
 }
 
-function allClear() {
+function handleAllClear() {
     operand1 = '0'
     operand2 = null
     operator = null
@@ -71,16 +71,60 @@ function allClear() {
     document.querySelector('.highlight')?.classList.remove('highlight')
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    populateDisplay(operand1)
-})
+function handleBackSpace() {
+    if (operand2 !== null) {
+        operand2 = operand2.slice(0, -1) || '0'
+        populateDisplay(operand2)
+    } else if (ARITHMETIC_OPERATOR.includes(operator)) {
+        operator = null
+        document.querySelector('.highlight').classList.remove('highlight')
+    } else if (operator === null) {
+        operand1 = operand1.slice(0, -1) || '0'
+        populateDisplay(operand1)
+    } else if (operator === EQUALS_OPERATOR) {
+        handleAllClear()
+    }
+}
 
-digitEls.forEach(el => el.addEventListener('click', (e) => {
-    if (display === MATH_ERROR) {
+function handleDecimal() {
+    if (operator === null && !operand1.includes('.')) {
+        operand1 += '.'
+        populateDisplay(operand1)
+    } else if (ARITHMETIC_OPERATOR.includes(operator) &&
+        (operand2 === null || !operand2.includes('.'))
+    ) {
+        operand2 = operand2 === null
+            ? '0.'
+            : operand2 + '.'
+        populateDisplay(operand2)
+    } else if (operator === EQUALS_OPERATOR) {
+        handleAllClear()
+        operand1 = '0.'
+        populateDisplay(operand1)
+    }
+}
+
+function handleEquals() {
+    if (display === MATH_ERROR ||
+        operator === null ||
+        operand2 === null
+    ) {
         return
     }
 
-    const digit = e.target.textContent
+    document.querySelector('.highlight')?.classList.remove('highlight')
+    equalsEl.classList.add('highlight')
+
+    operand1 = operate(operator, operand1, operand2)
+    operand2 = null
+    operator = EQUALS_OPERATOR
+    populateDisplay(operand1)
+}
+
+function handleDigits(digit) {
+    if (display === MATH_ERROR) {
+        return
+    }
 
     // after calculating with "equals" operator
     // if next button clicked is a digit
@@ -89,7 +133,7 @@ digitEls.forEach(el => el.addEventListener('click', (e) => {
         operator === EQUALS_OPERATOR &&
         operand2 === null
     ) {
-        allClear()
+        handleAllClear()
     }
     
     if (operator === null) {
@@ -103,74 +147,74 @@ digitEls.forEach(el => el.addEventListener('click', (e) => {
             : operand2 + digit
         populateDisplay(operand2)
     }
-}))
+}
 
-operatorEls.forEach(el => el.addEventListener('click', (e) => {
+function handleOperators(operatorElement) {
     if (display === MATH_ERROR) {
         return
     }
 
-    if (ARITHMETIC_OPERATOR.includes(operator) &&
+    const previousOperator = operator
+    if (ARITHMETIC_OPERATOR.includes(previousOperator) &&
         operand2 !== null
     ) {
-        operand1 = operate(operator, operand1, operand2)
+        operand1 = operate(previousOperator, operand1, operand2)
         operand2 = null
         populateDisplay(operand1)  
     }
 
-    operator = e.target.textContent
+    operator = operatorElement.textContent
     document.querySelector('.highlight')?.classList.remove('highlight')
-    e.target.classList.add('highlight')
-}))
+    operatorElement.classList.add('highlight')
+}
 
-equalsEl.addEventListener('click', (e) => {
-    if (display === MATH_ERROR ||
-        operator === null ||
-        operand2 === null
-    ) {
-        return
-    }
-
-    document.querySelector('.highlight')?.classList.remove('highlight')
-    e.target.classList.add('highlight')
-
-    operand1 = operate(operator, operand1, operand2)
-    operand2 = null
-    operator = EQUALS_OPERATOR
+document.addEventListener('DOMContentLoaded', () => {
     populateDisplay(operand1)
 })
 
-decimalEl.addEventListener('click', () => {
-    if (operator === null && !operand1.includes('.')) {
-        operand1 += '.'
-        populateDisplay(operand1)
-    } else if (ARITHMETIC_OPERATOR.includes(operator) &&
-        (operand2 === null || !operand2.includes('.'))
-    ) {
-        operand2 = operand2 === null
-            ? '0.'
-            : operand2 + '.'
-        populateDisplay(operand2)
-    } else if (operator === EQUALS_OPERATOR) {
-        allClear()
-        operand1 = '0.'
-        populateDisplay(operand1)
+allClearEl.addEventListener('click', handleAllClear)
+backspaceEl.addEventListener('click', handleBackSpace)
+decimalEl.addEventListener('click', handleDecimal)
+equalsEl.addEventListener('click', handleEquals)
+
+digitEls.forEach(el => el.addEventListener('click', (e) => {
+    handleDigits(e.target.textContent)
+}))
+operatorEls.forEach(el => el.addEventListener('click', (e) => {
+    handleOperators(e.target)
+}))
+
+document.addEventListener('keyup', (e) => {
+    if (['0','1','2','3','4','5','6','7','8','9'].includes(e.key)) {
+        handleDigits(e.key)
+        return
+    }
+
+    switch (e.key) {
+        case 'Escape':
+            handleAllClear()
+            break
+        case 'Backspace':
+            handleBackSpace()
+            break
+        case '.':
+            handleDecimal()
+            break
+        case '=':
+        case 'Enter':
+            handleEquals()
+            break
+        case '+':
+            handleOperators(document.querySelector('.add'))
+            break
+        case '-':
+            handleOperators(document.querySelector('.minus'))
+            break
+        case '*':
+            handleOperators(document.querySelector('.multiply'))
+            break
+        case '/':
+            handleOperators(document.querySelector('.divide'))
+            break
     }
 })
-
-backspaceEl.addEventListener('click', () => {
-    if (operand2 !== null) {
-        operand2 = operand2.slice(0, -1) || '0'
-        populateDisplay(operand2)
-    } else if (ARITHMETIC_OPERATOR.includes(operator)) {
-        operator = null
-        document.querySelector('.highlight').classList.remove('highlight')
-    } else if (operator === null) {
-        operand1 = operand1.slice(0, -1) || '0'
-        populateDisplay(operand1)
-    } else if (operator === EQUALS_OPERATOR) {
-        allClear()
-    }
-})
-
-allClearEl.addEventListener('click', allClear)
