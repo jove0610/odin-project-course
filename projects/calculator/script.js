@@ -12,6 +12,7 @@ const ARITHMETIC_OPERATOR = [
 ]
 
 const allClearEl = document.querySelector('.allclear')
+const backspaceEl = document.querySelector('.bspace')
 const decimalEl = document.querySelector('.decimal')
 const displayEl = document.querySelector('.display')
 const equalsEl = document.querySelector('.equals')
@@ -139,7 +140,7 @@ equalsEl.addEventListener('click', (e) => {
     populateDisplay(operand1)
 })
 
-decimalEl.addEventListener('click', (e) => {
+decimalEl.addEventListener('click', () => {
     if (operator === null && !operand1.includes('.')) {
         operand1 += '.'
         populateDisplay(operand1)
@@ -154,6 +155,21 @@ decimalEl.addEventListener('click', (e) => {
         allClear()
         operand1 = '0.'
         populateDisplay(operand1)
+    }
+})
+
+backspaceEl.addEventListener('click', () => {
+    if (operand2 !== null) {
+        operand2 = operand2.slice(0, -1) || '0'
+        populateDisplay(operand2)
+    } else if (ARITHMETIC_OPERATOR.includes(operator)) {
+        operator = null
+        document.querySelector('.highlight').classList.remove('highlight')
+    } else if (operator === null) {
+        operand1 = operand1.slice(0, -1) || '0'
+        populateDisplay(operand1)
+    } else if (operator === EQUALS_OPERATOR) {
+        allClear()
     }
 })
 
