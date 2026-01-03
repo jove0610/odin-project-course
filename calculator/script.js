@@ -196,6 +196,7 @@ document.addEventListener('keyup', (e) => {
             break
         case 'Backspace':
             handleBackSpace()
+            break
         case '.':
             handleDecimal()
             break
