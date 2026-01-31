@@ -1,18 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="modern-normalize.css">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="modern-normalize.css" />
+    <link rel="stylesheet" href="styles.css" />
 
     <title>Sign-up Form</title>
-</head>
-<body>
-    Photo by <a href="https://unsplash.com/@haliewestphoto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Halie West</a> on <a href="https://unsplash.com/photos/green-leaf-plant-in-close-up-photography-25xggax4bSA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-      
-    <h1 class="odin-heading">
-        Odin
-    </h1>
-</body>
+  </head>
+  <body>
+    <div class="hero-section">
+      <div class="logo-box">
+        <img src="assets/odin-lined.png" alt="odin-logo" class="odin-logo" />
+        <h1 class="odin-heading">ODIN</h1>
+      </div>
+
+      <p class="attribution">
+        Photo by
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://unsplash.com/@haliewestphoto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+        >
+          Halie West</a
+        >
+        on
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://unsplash.com/photos/green-leaf-plant-in-close-up-photography-25xggax4bSA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+        >
+          Unsplash
+        </a>
+      </p>
+    </div>
+
+    <div class="main-content">
+      <p class="about-text">
+        This is not real online service! You know you need something like this
+        in your life to help you realize your deepest dreams. Sign up now to get
+        started.
+      </p>
+      <p class="about-text">You know you want to.</p>
+
+      <form action="" class="form">
+        <div class="form-content">
+          <p class="about-text">Let's do this!</p>
+
+          <div class="fields">
+            <label for="first-name">
+              FIRST NAME
+              <input
+                name="firstName"
+                type="text"
+                id="first-name"
+                data-bwignore="true"
+              />
+            </label>
+
+            <label for="last-name">
+              LAST NAME
+              <input
+                name="lastName"
+                type="text"
+                id="last-name"
+                data-bwignore="true"
+              />
+            </label>
+
+            <label for="email">
+              EMAIL
+              <input
+                name="'email"
+                type="email"
+                id="email"
+                data-bwignore="true"
+              />
+            </label>
+
+            <label for="phone">
+              PHONE NUMBER
+              <input name="phone" type="tel" id="phone" data-bwignore="true" />
+            </label>
+
+            <label for="password">
+              PASSWORD
+              <input
+                name="password"
+                type="password"
+                id="password"
+                minlength="8"
+                data-bwignore="true"
+              />
+            </label>
+
+            <label for="confirm-password">
+              CONFIRM PASSWORD
+              <input
+                name="confirm-password"
+                type="password"
+                id="confirm-password"
+                minlength="8"
+                data-bwignore="true"
+              />
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="create-account-btn">Create Account</button>
+
+        <p class="login-text">
+          Already have an account?
+          <a href="/">Log in</a>
+        </p>
+      </form>
+    </div>
+  </body>
 </html>

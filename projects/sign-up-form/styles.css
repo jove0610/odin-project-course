@@ -1,8 +1,148 @@
 @font-face {
-    font-family: "Norse Bold";
-    src: url("./assets/Norsebold.otf") format("opentype");
+  font-family: "Norse Bold";
+  src: url("./assets/Norsebold.otf") format("opentype");
 }
 
-.odin-heading {
-    font-family: "Norse Bold";
+:root {
+  --white-color-font: #ddd;
+  --white-text-bgcolor: rgba(0, 0, 0, 0.5);
+  --input-border-color: #e5e7eb;
+  --input-error-border-color: #f83939;
+  --input-focus-border-color: #2148f7;
+  --green-color: #596d48;
+}
+
+body {
+  display: flex;
+}
+
+.hero-section {
+  height: 100vh;
+  width: min(40vw, 480px);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+
+  background-image: url("assets/halie-west-25xggax4bSA-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-section .logo-box {
+  margin-top: 20vh;
+  padding: 1rem 0;
+  display: flex;
+  background-color: var(--white-text-bgcolor);
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-section .odin-logo {
+  width: 4rem;
+}
+
+.hero-section .odin-heading {
+  font-family: "Norse Bold";
+  font-size: 4rem;
+  margin: 0;
+  color: var(--white-color-font);
+}
+
+.hero-section .attribution {
+  background-color: var(--white-text-bgcolor);
+  margin: auto 0 0 0;
+  padding: 0.8rem 0;
+  color: var(--white-color-font);
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.hero-section .attribution a {
+  color: var(--white-color-font);
+}
+
+.hero-section .attribution a:visited {
+  color: #b8b8b8;
+}
+
+.main-content {
+  flex-grow: 1;
+  flex-direction: column;
+  padding-top: 15vh;
+  background-color: #f6f6f6;
+}
+
+.main-content .about-text {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0 0 2rem 2rem;
+  width: 50ch;
+}
+
+.main-content .form-content {
+  margin-top: 3rem;
+  background-color: #fff;
+  padding: 1rem 0 2rem 2rem;
+}
+
+.main-content .form .about-text {
+  margin: 0 0 1rem 0;
+}
+
+.main-content .fields {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 4rem;
+  row-gap: 1rem;
+  max-width: 70ch;
+}
+
+.main-content .fields label {
+  font-size: 0.8rem;
+}
+
+.main-content .fields input {
+  display: block;
+  width: 15rem;
+  padding: 0.5em;
+  border: 1px solid var(--input-border-color);
+  border-radius: 0.5em;
+}
+
+.main-content .fields input:invalid {
+  outline: 1px solid var(--input-error-border-color);
+}
+
+.main-content .fields input:focus,
+.main-content .fields input:focus-visible {
+  outline: 1px solid var(--input-focus-border-color);
+  box-shadow: 2px 2px 3px #242424;
+}
+
+.main-content .form .create-account-btn {
+  color: #fff;
+  background-color: var(--green-color);
+  border: 1px solid var(--green-color);
+  margin-top: 1.8rem;
+  margin-left: 2rem;
+  padding: 0.7em 2.2em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.main-content .form .create-account-btn:hover,
+.main-content .form .create-account-btn:focus {
+  opacity: 0.7;
+}
+
+.main-content .form .login-text {
+  margin-left: 2rem;
+  margin-top: 1.5rem;
+}
+
+.main-content .form .login-text a {
+  color: var(--green-color);
+  font-weight: bold;
+  text-decoration: none;
 }
