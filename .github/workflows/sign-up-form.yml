@@ -1,0 +1,25 @@
+name: Deploy Sign-up Form to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'projects/sign-up-form/**'
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: projects/sign-up-form
+          destination_dir: sign-up-form

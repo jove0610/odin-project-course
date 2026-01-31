@@ -1,0 +1,8 @@
+@font-face {
+    font-family: "Norse Bold";
+    src: url("./assets/Norsebold.otf") format("opentype");
+}
+
+.odin-heading {
+    font-family: "Norse Bold";
+}
